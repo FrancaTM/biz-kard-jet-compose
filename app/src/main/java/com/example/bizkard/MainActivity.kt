@@ -50,99 +50,104 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BizKardApp(modifier: Modifier = Modifier) {
+fun BizKardApp() {
     BizKardInfo()
 }
 
 @Composable
 fun BizKardInfo() {
-    val imagePainter = painterResource(R.drawable.android_logo)
-    val MyAppIcons = Icons.Filled
-
     Column(
         modifier = Modifier
             .background(Color(211, 232, 213))
             .padding(10.dp)
     ) {
+        PresentationSection(modifier = Modifier.weight(0.8F))
+        ContactInfoSection(modifier = Modifier.weight(0.2F))
+    }
+}
+
+@Composable
+fun PresentationSection(modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.fillMaxSize()
+    ) {
+        val imagePainter = painterResource(R.drawable.android_logo)
+        Image(
+            painter = imagePainter,
+            contentDescription = null,
+            Modifier
+                .background(color = Color(10, 48, 65))
+                .size(128.dp)
+        )
+        Text(
+            text = "Jennifer Doe",
+            fontSize = 52.sp,
+            fontWeight = FontWeight.Light
+        )
+        Text(
+            text = "Android Developer",
+            fontSize = 20.sp,
+            color = Color(48, 123, 81),
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+fun ContactInfoSection(modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.fillMaxSize()
+    ) {
         Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.Start,
             modifier = Modifier
-                .fillMaxSize()
-                .weight(0.8F)
+                .fillMaxHeight()
+                .padding(14.dp)
         ) {
-            Image(
-                painter = imagePainter,
-                contentDescription = null,
-                Modifier
-                    .background(color = Color(10, 48, 65))
-                    .size(128.dp)
-            )
-            Text(
-                text = "Jennifer Doe",
-                fontSize = 52.sp,
-                fontWeight = FontWeight.Light
-            )
-            Text(
-                text = "Android Developer",
-                fontSize = 20.sp,
-                color = Color(48, 123, 81),
-                fontWeight = FontWeight.Bold
-            )
-        }
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(0.2F)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.Start,
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(14.dp)
+            val myAppIcons = Icons.Filled
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        MyAppIcons.Phone,
-                        contentDescription = "Phone number",
-                        tint = Color(12, 108, 61)
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = "+55 (41) 99876-5432",
-                        color = Color(25, 40, 30)
-                    )
-                }
-                Row {
-                    Icon(
-                        MyAppIcons.Share,
-                        contentDescription = "Social",
-                        tint = Color(12, 108, 61)
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = "@AndroidDev",
-                        color = Color(25, 40, 30)
-                    )
-                }
-                Row {
-                    Icon(
-                        MyAppIcons.Email,
-                        contentDescription = "Email contact",
-                        tint = Color(12, 108, 61)
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = "jen.doe@android.com",
-                        color = Color(25, 40, 30)
-                    )
-                }
+                Icon(
+                    myAppIcons.Phone,
+                    contentDescription = "Phone number",
+                    tint = Color(12, 108, 61)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = "+55 (41) 99876-5432",
+                    color = Color(25, 40, 30)
+                )
+            }
+            Row {
+                Icon(
+                    myAppIcons.Share,
+                    contentDescription = "Social",
+                    tint = Color(12, 108, 61)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = "@AndroidDev",
+                    color = Color(25, 40, 30)
+                )
+            }
+            Row {
+                Icon(
+                    myAppIcons.Email,
+                    contentDescription = "Email contact",
+                    tint = Color(12, 108, 61)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = "jen.doe@android.com",
+                    color = Color(25, 40, 30)
+                )
             }
         }
     }
