@@ -37,14 +37,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BizKardTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    BizKardApp()
-                }
+//            BizKardTheme {
+            // A surface container using the 'background' color from the theme
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                BizKardApp()
             }
         }
     }
@@ -152,7 +151,5 @@ fun BizKardInfo() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BizKardAppPreview() {
-    BizKardTheme {
-        BizKardApp()
-    }
+    BizKardApp()
 }
