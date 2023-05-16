@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +56,7 @@ fun BizKardApp() {
 }
 
 @Composable
-fun BizKardInfo() {
+private fun BizKardInfo() {
     Column(
         modifier = Modifier
             .background(Color(211, 232, 213))
@@ -67,7 +68,7 @@ fun BizKardInfo() {
 }
 
 @Composable
-fun PresentationSection(modifier: Modifier = Modifier) {
+private fun PresentationSection(modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -96,7 +97,7 @@ fun PresentationSection(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ContactInfoSection(modifier: Modifier = Modifier) {
+private fun ContactInfoSection(modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -110,46 +111,38 @@ fun ContactInfoSection(modifier: Modifier = Modifier) {
                 .padding(14.dp)
         ) {
             val myAppIcons = Icons.Filled
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    myAppIcons.Phone,
-                    contentDescription = "Phone number",
-                    tint = Color(12, 108, 61)
-                )
-                Spacer(modifier = Modifier.width(20.dp))
-                Text(
-                    text = "+55 (41) 99876-5432",
-                    color = Color(25, 40, 30)
-                )
-            }
-            Row {
-                Icon(
-                    myAppIcons.Share,
-                    contentDescription = "Social",
-                    tint = Color(12, 108, 61)
-                )
-                Spacer(modifier = Modifier.width(20.dp))
-                Text(
-                    text = "@AndroidDev",
-                    color = Color(25, 40, 30)
-                )
-            }
-            Row {
-                Icon(
-                    myAppIcons.Email,
-                    contentDescription = "Email contact",
-                    tint = Color(12, 108, 61)
-                )
-                Spacer(modifier = Modifier.width(20.dp))
-                Text(
-                    text = "jen.doe@android.com",
-                    color = Color(25, 40, 30)
-                )
-            }
+            ContactInfoLine(
+                info = "+55 (41) 99876-5432",
+                contentDescription = "Phone number",
+                iconImage = myAppIcons.Phone
+            )
+            ContactInfoLine(
+                info = "@AndroidDev",
+                contentDescription = "Social",
+                iconImage = myAppIcons.Share
+            )
+            ContactInfoLine(
+                info = "jen.doe@android.com",
+                contentDescription = "Email contact",
+                iconImage = myAppIcons.Email
+            )
         }
+    }
+}
+
+@Composable
+fun ContactInfoLine(info: String, contentDescription: String, iconImage: ImageVector) {
+    Row {
+        Icon(
+            iconImage,
+            contentDescription = contentDescription,
+            tint = Color(12, 108, 61)
+        )
+        Spacer(modifier = Modifier.width(20.dp))
+        Text(
+            text = info,
+            color = Color(25, 40, 30)
+        )
     }
 }
 
